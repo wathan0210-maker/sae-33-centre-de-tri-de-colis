@@ -17,7 +17,23 @@ int main(int argc, char *argv[]) {
         int poidsTotal;
     } Zone;
 
-    Colis c1 = {1, 'A', 16};
+    int i, masse;
+    char destination;
+
+    printf("Quel est l'identifiant de votre colis ? : ");
+    scanf("%d", &i);
+
+    printf("Quel est la zone de destination de votre colis ? : ");
+    scanf(" %c", &destination);
+
+    printf("Quel est le poids de votre colis (en kg) ? : ");
+    scanf("%d", &masse);
+
+    if(i != NULL && (destination == 'A' || destination == 'B' || destination == 'C') && masse > 0) {
+        Colis c1 = {i, destination, masse};
+    } else {
+        // continuer
+    }
 
     printf("Voici le colis n°%d qui va vers la zone %c et qui pèse %d kg\n", c1.id, c1.dest, c1.poids);
 }

@@ -1,4 +1,4 @@
-# SAE 31 - Centre de tri de colis
+# SAE 33 - Centre de tri de colis
 
 ## Pour commencer : comment utiliser Git ?
 
@@ -17,13 +17,13 @@ git config --global user.name "[Prenom] [Nom]"
 git config --global user.email "[login]@unistra.fr"
 ```
 
-3] Clôner le dépôt "SAE 31 - Centre de tri de colis" sur sa machine locale :
+3] Clôner le dépôt "SAE 33 - Centre de tri de colis" sur sa machine locale :
 
 ```sh
-git clone https://git.unistra.fr/trio-de-ayoub/sae-31-centre-de-tri-de-colis.git
+git clone https://git.unistra.fr/trio-de-ayoub/sae-33-centre-de-tri-de-colis.git
 ```
 
-Si toutes les étapes ont été respectées, vous avez maintenant un dossier `sae-31-centre-de-tri-de-colis` sur votre machine qui contient tous les éléments du dépôt Git.
+Si toutes les étapes ont été respectées, vous avez maintenant un dossier `sae-33-centre-de-tri-de-colis` sur votre machine qui contient tous les éléments du dépôt Git.
 
 ### Comment envoyer son travail ?
 
@@ -59,7 +59,7 @@ git commit -m "Retrait d'un fichier ignoré"
 2] Ajouter les fichiers modifiés à la zone de préparation :
 
 ```sh
-cd sae-31-centre-de-tri-de-colis
+cd sae-33-centre-de-tri-de-colis
 git add .
 git status
 ```
@@ -79,7 +79,7 @@ git push
 ### Comment mettre à jour son clone ?
 
 ```sh
-cd sae-31-centre-de-tri-de-colis
+cd sae-33-centre-de-tri-de-colis
 git pull origin main
 ```
 

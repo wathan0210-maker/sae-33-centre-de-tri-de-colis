@@ -1,93 +1,124 @@
-# SAE S31 - Centre de tri de colis
+# SAE 31 - Centre de tri de colis
 
+## Pour commencer : comment utiliser Git ?
 
+### Comment installer Git et clôner le dépôt sur sa machine locale ?
 
-## Getting started
+1] Installer Git sur sa machine puis taper dans l'invite de commande :
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-* [Create](https://docs.gitlab.com/user/project/repository/web_editor/#create-a-file) or [upload](https://docs.gitlab.com/user/project/repository/web_editor/#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://git.unistra.fr/trio-de-ayoub/sae-s31-centre-de-tri-de-colis.git
-git branch -M main
-git push -uf origin main
+```sh
+sudo apt install git
 ```
 
-## Integrate with your tools
+2] Configurer vos informations d'utilisateur :
 
-* [Set up project integrations](https://git.unistra.fr/trio-de-ayoub/sae-s31-centre-de-tri-de-colis/-/settings/integrations)
+```sh
+git config --global user.name "[Prenom] [Nom]"
+git config --global user.email "[login]@unistra.fr"
+```
 
-## Collaborate with your team
+3] Clôner le dépôt "SAE 31 - Centre de tri de colis" sur sa machine locale :
 
-* [Invite team members and collaborators](https://docs.gitlab.com/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/user/project/merge_requests/creating_merge_requests/)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/user/project/issues/managing_issues/#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+```sh
+git clone https://git.unistra.fr/trio-de-ayoub/sae-31-centre-de-tri-de-colis.git
+```
 
-## Test and Deploy
+Si toutes les étapes ont été respectées, vous avez maintenant un dossier `sae-31-centre-de-tri-de-colis` sur votre machine qui contient tous les éléments du dépôt Git.
 
-Use the built-in continuous integration in GitLab.
+### Comment envoyer son travail ?
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/topics/autodevops/requirements/)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ci/environments/protected_environments/)
+1] Le fichier `.gitignore` (à la racine du dépôt) indique à Git quels fichiers ignorer : les fichiers compilés, le fichier journal et les pipes nommés (qui apparaissent comme des fichiers sur le disque). Il se crée une seule fois, puis les autres le récupèrent avec `git pull` :
 
-***
+```sh
+cat > .gitignore << 'EOF'
+# Compilation
+Code/bin/
+Code/build/
+Code/*.o
+Code/main
+Code/tri
+Code/affichage
 
-# Editing this README
+# Journal et pipes nommés
+*.log
+*.fifo
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
+# Éditeurs
+.vscode/
+*.swp
+EOF
+```
 
-## Suggestions for a good README
+Si un fichier à ignorer a déjà été envoyé, il faut le retirer du suivi (sans le supprimer de sa machine) :
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```sh
+git rm --cached <fichier>
+git commit -m "Retrait d'un fichier ignoré"
+```
 
-## Name
-Choose a self-explaining name for your project.
+2] Ajouter les fichiers modifiés à la zone de préparation :
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+```sh
+cd sae-31-centre-de-tri-de-colis
+git add .
+git status
+```
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+3] Créer un commit :
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+```sh
+git commit -m "nom_commit"
+```
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+4] Envoyer ses commits vers le dépôt distant :
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+```sh
+git push
+```
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+### Comment mettre à jour son clone ?
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+```sh
+cd sae-31-centre-de-tri-de-colis
+git pull origin main
+```
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+Il est important de mettre à jour son dépôt avant de modifier un fichier pour obtenir les mises à jour des autres commits.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+---
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+## Le sujet
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+On simule un centre de tri de colis. L'utilisateur tape des commandes :
 
-## License
-For open source projects, say how it is licensed.
+- `COLIS <id> <destination> <poids>` : un colis arrive
+- `ETAT` : affiche l'état du centre
+- `QUIT` : arrête tout proprement
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+Un colis est valide si son id n'est pas vide, sa destination vaut `A`, `B` ou `C` et son poids est > 0. Une commande invalide ne doit pas faire planter le programme.
+
+Chaque colis valide est envoyé vers sa zone (A, B ou C). Chaque zone compte ses colis et son poids total, et le centre tient des stats globales (colis traités, poids total, dernier colis). Les 3 zones tournent en parallèle.
+
+La simulation s'arrête au bout de **20 colis valides** ou sur `QUIT`.
+
+## Ce qu'on doit utiliser
+
+**3 processus :**
+
+- **Main** : lit les commandes au clavier et les envoie à TRI par un **pipe nommé**.
+- **TRI** : fait tout le travail avec **6 threads** (détail ci-dessous).
+- **Affichage** : reçoit l'état du centre par un **pipe nommé**, l'affiche dans la console et écrit l'historique dans un fichier journal.
+
+**Les 6 threads de TRI :**
+
+- **Main** : crée les autres threads, lit le pipe nommé venant du processus Main, passe les `COLIS` au thread Tri par un **pipe anonyme**, et gère `QUIT` en arrêtant tout le monde avec des **signaux**.
+- **Tri & Routage** : valide le colis et l'envoie à la bonne zone par **3 pipes anonymes** (un par zone).
+- **Zone A / B / C** : reçoivent leurs colis et mettent à jour les stats de leur zone.
+- **Supervision** : récupère les infos des zones, met à jour les stats globales, vérifie si les 20 colis sont atteints, envoie l'état au processus Affichage (pipe nommé) et prévient le thread Main par **signal**.
+
+**Le point libre :** la communication entre les zones et la Supervision est à notre choix (mutex, sémaphores, variables de condition, etc.) et doit être **justifiée**.
+
+```
+Utilisateur → [Main] --pipe nommé--> [TRI : Main → Tri → Zones A/B/C → Supervision] --pipe nommé--> [Affichage]
+                 ↑______signaux______|                                   |______signaux______↑
+```
